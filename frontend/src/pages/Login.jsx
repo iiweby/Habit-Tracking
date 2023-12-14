@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
-import { FaSignInAlt } from "react-icons/fa";
+import { FaSignInAlt, FaSpinner } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { login, reset } from "../features/auth/authSlice";
-import Spinner from "../components/spinner";
 
 function Login() {
 	const [formData, setFormData] = useState({
@@ -26,7 +25,7 @@ function Login() {
 			toast.error(message);
 		}
 		if (isSuccess || user) {
-			navigate("/");
+			navigate("/Dashboard");
 		}
 
 		dispatch(reset());
@@ -48,7 +47,7 @@ function Login() {
 	};
 
 	if (isLoading) {
-		return <Spinner />;
+		return <FaSpinner />;
 	}
 
 	return (
